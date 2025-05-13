@@ -19,25 +19,46 @@ public class YouTrackApiProjects {
                 .queryParam(configReader.getEndPointOneQueryParamName(), configReader.getEndPointOneQueryParamValue())
                 .header("Authorization", configReader.getToken())
                 .header("Content-Type", "application/json")
-                .body("{\"name\":\"project1488\",\"shortName\":\"PJC\"}")
+                .body(json)
                 .relaxedHTTPSValidation()
                 .when()
                 .post();
     }
 
     @Step("Отправляем настройки проекта")
-    public Response postProjectSettings(){
-
+    public Response postProjectSettings(int startingNumber, String template, String name, String key, String iconUrl, String description, boolean pinned, boolean isDemo){
+        BodyPostProjectSettings json = new BodyPostProjectSettings(startingNumber, template, name, key, iconUrl, description, pinned, isDemo);
+        return RestAssured
+                .given()
+                .basePath(configReader.getEndPointTwo())
+                .queryParam(configReader.getEndPointTwoQueryParamName(), configReader.getEndPointTwoQueryParamValue())
+                .header("Authorization", configReader.getToken())
+                .header("Content-Type", "application/json")
+                .body(json)
+                .relaxedHTTPSValidation()
+                .when()
+                .post();
     }
 
     @Step("Завершающий запрос на создание проекта")
-    public Response postTheFinalRequest(){
-
+    public Response postTheFinalRequest(String ringId, int startingNumber, boolean createContent, String name, String shortName, String description, Leader leader){
+        BodyPostTheFinalRequest json = new BodyPostTheFinalRequest(ringId, startingNumber, createContent, name, shortName, description, leader);
+        return RestAssured
+                .given()
+                .basePath(configReader.getEndPointThree())
+                .queryParam(configReader.getEndPointThreeQueryParamNameOne(), configReader.getEndPointThreeQueryParamValueOne())
+                .queryParam(configReader.getEndPointThreeQueryParamNameTwo(), configReader.getEndPointThreeQueryParamValueTwo())
+                .header("Authorization", configReader.getToken())
+                .header("Content-Type", "application/json")
+                .body(json)
+                .relaxedHTTPSValidation()
+                .when()
+                .post();
     }
 
     @Step("Создание проекта")
     public Response createYouTrackProject(){
-
+        //Это будет в тестовом классе
     }
 
     @Step("Удаление проекта")

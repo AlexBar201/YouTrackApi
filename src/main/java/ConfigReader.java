@@ -33,4 +33,36 @@ public class ConfigReader {
     public String getEndPointOneQueryParamValue() {
         return properties.getProperty("api.andPointOne.queryParamValue");
     }
+
+    public String getEndPointTwo() {
+        return properties.getProperty("api.andPointTwo");
+    }
+
+    public String getEndPointTwoQueryParamName() {
+        return properties.getProperty("api.andPointTwo.queryParamName");
+    }
+
+    public String getEndPointTwoQueryParamValue() {
+        return properties.getProperty("api.andPointTwo.queryParamValue");
+    }
+
+    public String getEndPointThree() {
+        return properties.getProperty("api.andPointThree");
+    }
+
+    public String getEndPointThreeQueryParamNameOne() {
+        return properties.getProperty("api.andPointThree.queryParamNameOne");
+    }
+
+    public String getEndPointThreeQueryParamValueOne() {
+        return properties.getProperty("api.andPointThree.queryParamValueOne");
+    }
+
+    public String getEndPointThreeQueryParamNameTwo() {
+        return properties.getProperty("api.andPointThree.queryParamNameTwo");
+    }
+
+    public String getEndPointThreeQueryParamValueTwo() {
+        return properties.getProperty("api.andPointThree.queryParamValueTwo");
+    }
 }
