@@ -2,18 +2,20 @@ import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
-public class YouTrackApiCreateProjects {
+public class YouTrackApiProjects {
 
     private final String BASE_URI;
     private final String END_POINT_ONE;
     private final String END_POINT_TWO;
     private final String END_POINT_THREE;
+    private final String END_POINT_FOUR;
 
-    public YouTrackApiCreateProjects(String BASE_URI, String END_POINT_ONE, String END_POINT_TWO, String END_POINT_THREE){
+    public YouTrackApiProjects(String BASE_URI, String END_POINT_ONE, String END_POINT_TWO, String END_POINT_THREE, String END_POINT_FOUR){
         this.BASE_URI = BASE_URI;
         this.END_POINT_ONE = END_POINT_ONE;
         this.END_POINT_TWO = END_POINT_TWO;
         this.END_POINT_THREE = END_POINT_THREE;
+        this.END_POINT_FOUR = END_POINT_FOUR;
     }
 
     public void setUp(){
@@ -32,6 +34,16 @@ public class YouTrackApiCreateProjects {
 
     @Step("Завершающий запрос на создание проекта")
     public Response postTheFinalRequest(){
+
+    }
+
+    @Step("Создание проекта")
+    public Response createYouTrackProject(){
+
+    }
+
+    @Step("Удаление проекта")
+    public Response deleteYouTrackProject(){
 
     }
 }
