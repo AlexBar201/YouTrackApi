@@ -4,27 +4,25 @@ import io.restassured.response.Response;
 
 public class YouTrackApiProjects {
 
-    private final String BASE_URI;
-    private final String END_POINT_ONE;
-    private final String END_POINT_TWO;
-    private final String END_POINT_THREE;
-    private final String END_POINT_FOUR;
-
-    public YouTrackApiProjects(String BASE_URI, String END_POINT_ONE, String END_POINT_TWO, String END_POINT_THREE, String END_POINT_FOUR){
-        this.BASE_URI = BASE_URI;
-        this.END_POINT_ONE = END_POINT_ONE;
-        this.END_POINT_TWO = END_POINT_TWO;
-        this.END_POINT_THREE = END_POINT_THREE;
-        this.END_POINT_FOUR = END_POINT_FOUR;
-    }
+    ConfigReader configReader = new ConfigReader();
 
     public void setUp(){
-        RestAssured.baseURI = BASE_URI;
+        RestAssured.baseURI = configReader.getBaseUri();
     }
 
     @Step("Отправляем наименование проекта и его идентификатор")
-    public Response postNameAndShortName(){
-
+    public Response postNameAndShortName(String name, String shortName){
+        BodyPostNameAndShortName json = new BodyPostNameAndShortName(name, shortName);
+        return RestAssured
+                .given()
+                .basePath(configReader.getEndPointOne())
+                .queryParam(configReader.getEndPointOneQueryParamName(), configReader.getEndPointOneQueryParamValue())
+                .header("Authorization", configReader.getToken())
+                .header("Content-Type", "application/json")
+                .body("{\"name\":\"project1488\",\"shortName\":\"PJC\"}")
+                .relaxedHTTPSValidation()
+                .when()
+                .post();
     }
 
     @Step("Отправляем настройки проекта")

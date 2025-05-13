@@ -14,11 +14,23 @@ public class ConfigReader {
         }
     }
 
-    public static String getToken() {
+    public String getToken() {
         return properties.getProperty("api.token");
     }
 
-    public static String getBaseUri() {
+    public String getBaseUri() {
         return properties.getProperty("api.baseUri");
+    }
+
+    public String getEndPointOne() {
+        return properties.getProperty("api.andPointOne");
+    }
+
+    public String getEndPointOneQueryParamName() {
+        return properties.getProperty("api.andPointOne.queryParamName");
+    }
+
+    public String getEndPointOneQueryParamValue() {
+        return properties.getProperty("api.andPointOne.queryParamValue");
     }
 }
