@@ -1,5 +1,6 @@
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigReader {
@@ -7,8 +8,13 @@ public class ConfigReader {
 
     static {
         try {
-            FileInputStream fileInputStream = new FileInputStream("config.properties");
-            properties.load(fileInputStream);
+            // Грузим файл из resources с помощью classloader
+            try (InputStream inputStream = ConfigReader.class.getClassLoader().getResourceAsStream("config.properties")) {
+                if (inputStream == null) {
+                    throw new RuntimeException("config.properties не найден в resources!");
+                }
+                properties.load(inputStream);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
