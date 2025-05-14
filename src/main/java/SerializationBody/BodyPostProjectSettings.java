@@ -1,3 +1,5 @@
+package SerializationBody;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -5,12 +7,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BodyPostTheFinalRequest {
-    private String ringId;
+public class BodyPostProjectSettings {
     private int startingNumber;
-    private boolean createContent;
+    private String template;
     private String name;
-    private String shortName;
+    private String key;
+    private String iconUrl;
     private String description;
-    private Leader leader;
+    private boolean pinned;
+    private boolean isDemo;
 }
