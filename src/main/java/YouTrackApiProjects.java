@@ -60,13 +60,15 @@ public class YouTrackApiProjects {
                 .post();
     }
 
-    @Step("Создание проекта")
-    public Response createYouTrackProject(){
-        //Это будет в тестовом классе
-    }
-
     @Step("Удаление проекта")
-    public Response deleteYouTrackProject(){
-
+    public Response deleteYouTrackProject(String id){
+        return RestAssured
+                .given()
+                .basePath(configReader.getEndPointThree() + "/" + id)
+                .header("Authorization", configReader.getToken())
+                .header("Content-Type", "application/json")
+                .relaxedHTTPSValidation()
+                .when()
+                .delete();
     }
 }
